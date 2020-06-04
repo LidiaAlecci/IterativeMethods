@@ -1,7 +1,7 @@
 #ifndef ITERATIONDATACONJUGATE_H
 #define ITERATIONDATACONJUGATE_H
 
-#include<eigen3/Eigen/Sparse>
+//#include<eigen3/Eigen/Sparse>
 #include "IterationData.h"
 
 // IterationDataConjugate inherits from IterationData with public inheritance

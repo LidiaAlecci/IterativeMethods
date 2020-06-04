@@ -26,21 +26,21 @@ void GaussSeidel::set(const Eigen::SparseMatrix<double>& A, const Eigen::VectorX
 Eigen::VectorXd GaussSeidel::solveP(const Eigen::VectorXd rhs) const {
 	int n = P.rows();
 	Eigen::VectorXd solve = Eigen::VectorXd::Zero(n);
-	for (int i = 0; i < P.outerSize(); ++i) {
-		for (Eigen::SparseMatrix<double>::InnerIterator it(P, i); it; ++it) { //to iterate over the non-zeros elements
-			int col = it.col();
-			int row = it.row();
-			if (col == row) {
-				if(it.value()==0){
-				std::cout << "Error in solveP: P(" << col << "," << col << ") == 0" << std::endl;
-				}else{
-					if(col==0){
-						solve(0) = rhs(0) / it.value();
-					}else{
-						solve(i) = (rhs(i) - (P.row(col) * solve)) / it.value();
-					}
-				}
-			}
+
+	double pii = P.coeff(0, 0);
+	if (pii == 0) {
+		std::cout << "Errore nel risolvere P: P(0,0) == 0" << std::endl;
+	}
+	else {
+		solve(0) = rhs(0) / pii;
+	}
+	for (int i = 1; i < n; ++i) {
+		pii = P.coeff(i, i);
+		if (pii == 0) {
+			std::cout << "Errore nel risolvere P: P(" << i << "," << i << ") == 0" << std::endl;
+		}
+		else {
+			solve(i) = (rhs(i) - (P.row(i) * solve)) / pii;
 		}
 	}
 	return solve;
