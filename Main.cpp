@@ -47,20 +47,7 @@ int main() {
 	IterationData* data = new IterationData(rhs);
 	IterationDataConjugate* dataConjugate = new IterationDataConjugate(rhs);
 
-	/*
-	/////////////////////////TRY
-	residualStopCrit.setTolerance(tol[0]);
-	residualStopCrit.setMaxIter(500);
-	dataConjugate->restart();
-	conjugate = ConjugateGradient(M1, rhs, stopPointer);
-	begin = std::chrono::steady_clock::now();
-	conjugate.iterativeSolver(dataConjugate);
-	end = std::chrono::steady_clock::now();
-	error = (dataConjugate->actualSol - xEs).norm() / xEs.norm();
-	resultGradientConjM1.pushNewResult(tol[0], dataConjugate->getIter(), dataConjugate->residualHistory.back(), error, std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count());
-	*/
-
-	// Matrx 1
+	// Matrix 1
 	std::cout << "Esecuzione Matrice 1" << std::endl;
 	for (int i = 0; i < 4; ++i) {
 		residualStopCrit.setTolerance(tol[i]);
@@ -85,7 +72,7 @@ int main() {
 		error = (data->actualSol - xEs).norm() / xEs.norm();
 		resultGaussM1.pushNewResult(tol[i], data->getIter(), data->residualHistory.back(), error, std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count());
 		
-		// Gradiante 
+		// Gradiente 
 
 		data->restart();
 		gradient = Gradient(M1, rhs, stopPointer);
@@ -95,7 +82,7 @@ int main() {
 		error = (data->actualSol - xEs).norm() / xEs.norm();
 		resultGradientM1.pushNewResult(tol[i], data->getIter(), data->residualHistory.back(), error, std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count());
 		
-		// Gradiante Coniugato
+		// Gradiente Coniugato
 		
 		dataConjugate->restart();
 		conjugate = ConjugateGradient(M1, rhs, stopPointer);
@@ -137,7 +124,7 @@ int main() {
 		error = (data->actualSol - xEs).norm() / xEs.norm();
 		resultGaussM2.pushNewResult(tol[i], data->getIter(), data->residualHistory.back(), error, std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count());
 
-		// Gradiante 
+		// Gradiente 
 
 		data->restart();
 		gradient = Gradient(M2, rhs, stopPointer);
@@ -147,7 +134,7 @@ int main() {
 		error = (data->actualSol - xEs).norm() / xEs.norm();
 		resultGradientM2.pushNewResult(tol[i], data->getIter(), data->residualHistory.back(), error, std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count());
 
-		// Gradiante Coniugato
+		// Gradiente Coniugato
 
 		dataConjugate->restart();
 		conjugate = ConjugateGradient(M2, rhs, stopPointer);
@@ -189,7 +176,7 @@ int main() {
 		error = (data->actualSol - xEs).norm() / xEs.norm();
 		resultGaussM3.pushNewResult(tol[i], data->getIter(), data->residualHistory.back(), error, std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count());
 
-		// Gradiante 
+		// Gradiente 
 
 		data->restart();
 		gradient = Gradient(M3, rhs, stopPointer);
@@ -199,7 +186,7 @@ int main() {
 		error = (data->actualSol - xEs).norm() / xEs.norm();
 		resultGradientM3.pushNewResult(tol[i], data->getIter(), data->residualHistory.back(), error, std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count());
 
-		// Gradiante Coniugato
+		// Gradiente Coniugato
 
 		dataConjugate->restart();
 		conjugate = ConjugateGradient(M3, rhs, stopPointer);
@@ -241,7 +228,7 @@ int main() {
 		error = (data->actualSol - xEs).norm() / xEs.norm();
 		resultGaussM4.pushNewResult(tol[i], data->getIter(), data->residualHistory.back(), error, std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count());
 
-		// Gradiante 
+		// Gradiente 
 
 		data->restart();
 		gradient = Gradient(M4, rhs, stopPointer);
@@ -251,7 +238,7 @@ int main() {
 		error = (data->actualSol - xEs).norm() / xEs.norm();
 		resultGradientM4.pushNewResult(tol[i], data->getIter(), data->residualHistory.back(), error, std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count());
 
-		// Gradiante Coniugato
+		// Gradiente Coniugato
 
 		dataConjugate->restart();
 		conjugate = ConjugateGradient(M4, rhs, stopPointer);
